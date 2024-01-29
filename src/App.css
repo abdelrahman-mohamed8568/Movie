@@ -1,0 +1,763 @@
+* {
+    color: var(--4);
+    font-family: 'Source Code Pro', monospace;
+}
+
+:root {
+    --1: #176c5e;
+    --2: #af9754;
+    --3: #181818;
+    --4: #ffffffb9;
+    --5: #000000;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    background-color: var(--3);
+    height: 50px;
+    width: 100%;
+    z-index: 99999;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    transition: 1s ease;
+}
+
+.headerLink {
+    display: flex;
+    text-decoration: none;
+    color: var(--2);
+    font-size: 14px;
+    transition: 1s;
+}
+
+header h3 {
+    font-size: 2rem;
+    font-family: 'Edu TAS Beginner', cursive;
+    padding-left: 5px;
+    color: var(--1);
+}
+
+.pop {
+    font-family: 'Edu TAS Beginner', cursive;
+    color: var(--2);
+}
+
+.icon {
+    height: 5vh;
+    transition: transform 0.5s ease;
+}
+
+.icon:hover {
+    transform: rotate(45deg);
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+
+}
+
+li {
+    margin: 0 10px;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.headerBox {
+    display: flex;
+    align-items: center;
+}
+
+.active {
+    color: var(--1);
+}
+
+input {
+    width: 100%;
+    border: var(--2) 1px solid;
+    border-radius: 15px;
+    outline: none;
+    text-align: center;
+    color: var(--4);
+    background-color: transparent;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    margin-left: 120px;
+    width: 150px;
+    height: 30px;
+    border: var(--1) 1px solid;
+    border-radius: 15px;
+    transition: 1s ease;
+}
+
+.searchBox i {
+    color: var(--4);
+}
+
+#checkbox {
+    display: none;
+}
+
+.toggle {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition-duration: .5s;
+    display: none;
+}
+
+.bars {
+    width: 100%;
+    height: 4px;
+    background-color: var(--4);
+    border-radius: 4px;
+}
+
+#bar2 {
+    transition-duration: .8s;
+}
+
+#bar1,
+#bar3 {
+    width: 70%;
+}
+
+#checkbox:checked+.toggle .bars {
+    position: absolute;
+    transition-duration: .5s;
+}
+
+#checkbox:checked+.toggle #bar2 {
+    transform: scaleX(0);
+    transition-duration: .5s;
+}
+
+#checkbox:checked+.toggle #bar1 {
+    width: 100%;
+    transform: rotate(45deg);
+    transition-duration: .5s;
+}
+
+#checkbox:checked+.toggle #bar3 {
+    width: 100%;
+    transform: rotate(-45deg);
+    transition-duration: .5s;
+}
+
+#checkbox:checked+.toggle {
+    transition-duration: .5s;
+    transform: rotate(180deg);
+}
+
+@media (max-width: 990px) {
+    .toggle {
+        display: flex;
+    }
+
+    .ulToggle {
+        top: 5vh;
+        transition: all 1s ease-in-out;
+        list-style: none;
+    }
+
+    .headerToggle {
+        height: 80vh;
+    }
+
+    .headerLink {
+        justify-content: center;
+    }
+
+    ul {
+        transition: 1s ease;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: -80vh;
+        margin-right: 5vh;
+    }
+
+    li {
+        padding-top: 8vh;
+        width: 60%;
+        border-bottom: var(--4) solid 1px;
+    }
+
+    header h3 {
+        font-size: 1.5rem;
+    }
+
+    .icon {
+        height: 3.5vh;
+    }
+
+    .searchBox {
+        margin-right: 25px;
+        margin-left: 30px;
+    }
+
+    .headerBox {
+        position: absolute;
+        top: 10px;
+    }
+}
+
+/* Search */
+.searchButton {
+    width: 100%;
+    border: none;
+    height: 5vh;
+    outline: none;
+    text-align: center;
+    color: var(--4);
+    background-color: transparent;
+}
+
+.searchHeader {
+    background-color: var(--3);
+    flex-direction: column-reverse;
+    display: flex;
+    justify-content: center;
+}
+
+.modal {
+    padding-top: 65px;
+}
+
+.searchBody {
+    background-color: var(--3);
+    width: 100%;
+}
+
+/* Loader */
+.loaderBox {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.loader {
+    width: 220px;
+    height: 22rem;
+    padding: 15px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: var(--3);
+}
+
+.loader__skeleton {
+    background-image: linear-gradient(90deg,
+            #e0e0e0 0px,
+            rgb(229 229 229 / 90%) 40px,
+            #e0e0e0 80px);
+    background-size: 300%;
+    background-position: 100% 0;
+    border-radius: inherit;
+    animation: shimmer 1.5s infinite;
+}
+
+.loader__title {
+    height: 80%;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: -100% 0;
+    }
+}
+
+/* Home */
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    background-color: var(--3);
+    padding-top: 10vh;
+    border: var(--3) 30px solid;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--5);
+    min-height: 170vh;
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0px 0px 35px var(--4);
+    overflow: hidden;
+}
+
+.coverContainer {
+    background-image: url("./images/cover.jpg");
+    background-size: cover;
+    background-position: center center;
+    width: 80%;
+    height: 70vh;
+    align-items: center;
+    display: flex;
+    padding: 50px;
+}
+
+.coverContainer h3,
+.coverContainer h1 {
+    color: var(--2);
+}
+
+strong {
+    color: var(--1);
+    font-family: 'Edu TAS Beginner', cursive;
+    font-size: 70px;
+}
+
+.coverContainer i {
+    color: var(--1);
+    font-size: xx-large;
+    padding-left: 15px;
+}
+
+/* CardContainer */
+#cardContainer {
+    background-color: var(--3);
+    border-radius: 25px;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.frontText {
+    font-family: 'Edu TAS Beginner', cursive;
+    color: var(--1);
+    text-decoration: underline;
+}
+
+.backText {
+    font-family: 'Edu TAS Beginner', cursive;
+    position: absolute;
+    font-size: 3em;
+    opacity: .25;
+    color: var(--2);
+    z-index: 0;
+}
+
+.cards {
+    background-color: var(--5);
+    width: 90%;
+    height: 100%;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    z-index: 1;
+}
+
+.mySwiper {
+    width: 100%;
+    height: 100%;
+}
+
+.buttonContainer {
+    text-align: center;
+    margin-bottom: -25px;
+}
+
+.homeButton {
+    color: var(--4);
+    background-color: var(--2);
+    width: 150px;
+    height: 40px;
+    border-radius: 25px;
+    border: var(--5) 2px solid;
+    font-size: 1.3rem;
+    display: inline-block;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    overflow: hidden;
+    padding: 2px;
+    transition: 1s ease;
+}
+
+.homeButton:hover {
+    letter-spacing: 3px;
+    background-color: var(--3);
+}
+
+.textBox {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.pageButton {
+    color: var(--5);
+    background-color: var(--2);
+    width: 70px;
+    height: 40px;
+    border-radius: 25px;
+    border: var(--5) 2px solid;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+#disabledButton {
+    background-color: var(--3);
+    color: var(--4);
+}
+
+/* Card */
+.cardsGrid {
+    max-width: 100%;
+    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: auto;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent !important;
+    cursor: pointer;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 5;
+    width: 200px;
+    height: 300px;
+    border-radius: 25px;
+    opacity: 0;
+    background-color: var(--5);
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .overlay {
+    opacity: .4;
+}
+
+.card img {
+    width: 200px;
+    height: 300px;
+    border-radius: 25px;
+}
+
+.card h6 {
+    color: var(--4);
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Movie Details */
+.detailsBox {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.movieCover {
+    width: 70vw;
+    height: 155vh;
+    position: absolute;
+    top: 20vh;
+    border-radius: 25px 25px 0px 0px;
+    opacity: .35;
+    margin-bottom: 200px;
+}
+
+.coverShadow {
+    width: 70vw;
+    height: 155vh;
+    position: absolute;
+    top: 20vh;
+    box-shadow: rgba(0, 0, 0, 0.949) 0px -600px 100px 0px inset;
+}
+
+.info {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding-top: 300px;
+    width: 80%;
+}
+
+.leftInfo,
+.rightInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.movieImg {
+    width: 200px;
+    box-shadow: 0px 0px 30px var(--2);
+}
+
+.ratings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ratings h4,
+.detailsBox span {
+    font-size: large;
+}
+
+.ratings img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.detailsBox h1 {
+    color: var(--2);
+    font-size: 2rem;
+    font-family: 'Edu TAS Beginner', cursive;
+    padding-top: 200px;
+    z-index: 2;
+}
+
+.detailsBox h5 {
+    color: var(--1);
+}
+
+.movieSite {
+    background-color: var(--3);
+    text-decoration: none;
+    font-size: medium;
+    width: 50%;
+    border-radius: 25px;
+    color: var(--2);
+    border: none;
+    z-index: 2;
+}
+
+.Overview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+    padding-top: 800px;
+    z-index: 1;
+}
+
+.Overview p {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    width: 70vw;
+    z-index: 10000000000;
+}
+
+.detailsBox p {
+    padding-top: 60px;
+    max-width: 60%;
+    font-size: 2rem;
+    font-family: 'Edu TAS Beginner', cursive;
+}
+
+@media (max-width: 750px) {
+    .detailsBox h1 {
+        padding-top: 40px;
+    }
+
+    .Overview {
+        padding-top: 1100px;
+    }
+}
+
+/* About */
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.ps {
+    width: 80%;
+    height: 500px;
+    position: absolute;
+    top: 20vh;
+    border-radius: 0 300vh 75vh 160vh;
+    opacity: 0.4;
+}
+
+.screens {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 100px;
+    z-index: 999;
+    background-color: #000000b7;
+    border-radius: 0 300vh 75vh 160vh;
+    height: 500px;
+    width: 90%;
+}
+
+.screens h1 {
+    font-size: 4rem;
+    font-family: 'Edu TAS Beginner', cursive;
+}
+
+#logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screens img {
+    height: 15vh;
+}
+
+.about p {
+    font-size: 3rem;
+    font-family: 'Edu TAS Beginner', cursive;
+    color: var(--2);
+}
+
+.contact {
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 15px;
+    margin: 20px;
+}
+
+.contact1,
+.contact2,
+.contact3,
+.contact4 {
+    background-color: var(--3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    transition: .4s ease;
+}
+
+.contact1:hover,
+.contact2:hover,
+.contact3:hover,
+.contact4:hover {
+    background-color: var(--4);
+    scale: 1.2;
+}
+
+.contact1 {
+    border-radius: 100% 0 15px 0;
+    padding-top: .5em;
+    padding-left: .5em;
+}
+
+.contact1 i {
+    color: #0A66C1;
+    transition: .4s ease;
+}
+
+.contact1:hover i {
+    color: var(--3);
+}
+
+.contact2 {
+    border-radius: 0 100% 0 15px;
+    padding-top: .5em;
+    padding-right: .5em;
+}
+
+.contact2 i {
+    color: #FEFEFE;
+    transition: .4s ease;
+}
+
+.contact2:hover i {
+    color: var(--3);
+}
+
+.contact3 {
+    border-radius: 0 15px 0 100%;
+    padding-bottom: .5em;
+    padding-left: .5em;
+}
+
+.contact3 i {
+    color: #FEC939;
+    transition: .4s ease;
+}
+
+.contact3:hover i {
+    color: var(--3);
+}
+
+.contact4 {
+    border-radius: 15px 0 100% 0;
+    padding-bottom: .5em;
+    padding-right: .5em;
+}
+
+.contact4 i {
+    color: #25D366;
+    transition: .4s ease;
+}
+
+.contact4:hover i {
+    color: var(--3);
+}
+
+@media (max-width: 990px) {
+    .screens {
+        flex-direction: column;
+        margin-bottom: 150px;
+    }
+
+    .screens h1 {
+        margin-top: 350px;
+    }
+
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: var(--3);
+    text-align: center;
+    padding-top: 50px;
+}
